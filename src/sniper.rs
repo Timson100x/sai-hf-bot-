@@ -55,7 +55,7 @@ impl Sniper {
             }
         }
         
-        anyhow::bail!("Trade execution failed")
+        unreachable!()
     }
     
     /// Validate trade parameters
