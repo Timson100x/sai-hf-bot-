@@ -13,8 +13,10 @@ pub fn calculate_slippage(amount: f64, slippage_bps: u16) -> f64 {
 
 /// Validate Solana address format
 pub fn is_valid_solana_address(address: &str) -> bool {
-    // Basic validation - addresses should be 32-44 characters base58
-    address.len() >= 32 && address.len() <= 44 && address.chars().all(|c| c.is_alphanumeric())
+    // Solana addresses are base58 encoded (32-44 characters)
+    // Base58 excludes: 0, O, I, l
+    const BASE58_CHARS: &str = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+    address.len() >= 32 && address.len() <= 44 && address.chars().all(|c| BASE58_CHARS.contains(c))
 }
 
 /// Calculate price impact percentage
