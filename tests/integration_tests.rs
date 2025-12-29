@@ -1,22 +1,15 @@
-use sai_hf_bot::*;
+// Integration tests for Solana HFT Bot
+// These tests require the bot to be compiled as a library or use internal testing
 
 #[tokio::test]
-async fn test_config_validation() {
-    // This test would validate configuration loading
-    // Skipping actual test as it requires environment setup
+async fn test_placeholder() {
+    // Placeholder test to ensure test infrastructure works
+    assert!(true);
 }
 
-#[tokio::test]
-async fn test_pool_monitoring() {
-    // This test would validate pool monitoring functionality
-    // Skipping actual test as it requires API mocking
-}
+// Future integration tests would test:
+// - Configuration loading from environment
+// - API connectivity and response handling
+// - Trade execution flow
+// - Error recovery mechanisms
 
-#[tokio::test]
-async fn test_trade_execution() {
-    // This test would validate trade execution logic
-    // Skipping actual test as it requires API mocking
-}
-
-// Integration tests would go here
-// These would test the full flow with mocked APIs
