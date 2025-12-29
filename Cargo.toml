@@ -1,0 +1,51 @@
+[package]
+name = "sai-hf-bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.42", features = ["full"] }
+
+# Web framework for dashboard
+axum = "0.7"
+tower = "0.5"
+tower-http = { version = "0.6", features = ["fs", "cors"] }
+
+# HTTP client for API calls
+reqwest = { version = "0.12", features = ["json"] }
+
+# JSON serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Environment variables
+dotenv = "0.15"
+
+# Solana SDK
+solana-client = "2.0"
+solana-sdk = "2.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "2.0"
+
+# Async utilities
+futures = "0.3"
+
+# Time utilities
+chrono = "0.4"
+
+# Configuration
+config = "0.14"
+
+[dev-dependencies]
+mockito = "1.5"
+
+[[bin]]
+name = "sai-hf-bot"
+path = "src/main.rs"
