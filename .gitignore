@@ -1,5 +1,19 @@
-# Python-related
-__pycache__/
-*.py[cod]
+# Rust-related
+target/
+Cargo.lock
+**/*.rs.bk
+
+# Environment variables
 *.env
 .env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
