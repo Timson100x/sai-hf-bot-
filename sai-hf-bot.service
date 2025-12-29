@@ -1,0 +1,24 @@
+[Unit]
+Description=Solana High-Frequency Trading Bot
+After=network.target
+
+[Service]
+Type=simple
+User=botuser
+WorkingDirectory=/home/botuser/sai-hf-bot
+EnvironmentFile=/home/botuser/sai-hf-bot/.env
+ExecStart=/home/botuser/sai-hf-bot/target/release/sai-hf-bot
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/home/botuser/sai-hf-bot
+
+[Install]
+WantedBy=multi-user.target

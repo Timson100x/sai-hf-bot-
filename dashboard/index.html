@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana HFT Bot Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Solana High-Frequency Trading Bot</h1>
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Bot Status Card -->
+            <div class="card">
+                <h2>Bot Status</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Status:</span>
+                        <span class="stat-value" id="botStatus">Loading...</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Slippage:</span>
+                        <span class="stat-value" id="slippage">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Min Profit:</span>
+                        <span class="stat-value" id="minProfit">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Max Position:</span>
+                        <span class="stat-value" id="maxPosition">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading Opportunities Card -->
+            <div class="card">
+                <h2>Trading Opportunities</h2>
+                <div class="opportunities-container">
+                    <div id="opportunitiesList">
+                        <p class="placeholder">Scanning for opportunities...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Pools Card -->
+            <div class="card">
+                <h2>Monitored Pools</h2>
+                <div class="pools-container">
+                    <div id="poolsList">
+                        <p class="placeholder">Loading pools...</p>
+                    </div>
+                    <div class="pool-count">
+                        <strong>Total Pools:</strong> <span id="poolCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Trades Card -->
+            <div class="card">
+                <h2>Recent Trades</h2>
+                <div class="trades-container">
+                    <table id="tradesTable">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Amount In</th>
+                                <th>Amount Out</th>
+                                <th>Profit</th>
+                                <th>Signature</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tradesBody">
+                            <tr>
+                                <td colspan="6" class="placeholder">No trades yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Solana HFT Bot v0.1.0 | Last Updated: <span id="lastUpdate">-</span></p>
+            <p class="disclaimer">⚠️ This is a development dashboard. Always test thoroughly before live trading.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
