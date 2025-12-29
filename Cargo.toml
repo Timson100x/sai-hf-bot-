@@ -1,0 +1,25 @@
+[package]
+name = "sai-hf-bot"
+version = "0.1.0"
+edition = "2021"
+authors = ["SAI-HF Bot Team"]
+description = "Solana AI High-Frequency Trading Bot"
+
+[dependencies]
+tokio = { version = "1.35", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+dotenv = "0.15"
+anyhow = "1.0"
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.11"
+reqwest = { version = "0.11", features = ["json"] }
+rand = "0.8"
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[[bin]]
+name = "sai-hf-bot"
+path = "src/main.rs"

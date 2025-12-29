@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAI-HF Bot Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 SAI-HF Bot Dashboard</h1>
+            <div class="status-indicator">
+                <span id="connection-status" class="status-dot disconnected"></span>
+                <span id="connection-text">Disconnected</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Statistics Section -->
+            <section class="stats-section">
+                <h2>Trading Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Trades</h3>
+                        <p id="total-trades" class="stat-value">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Successful</h3>
+                        <p id="successful-trades" class="stat-value success">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Failed</h3>
+                        <p id="failed-trades" class="stat-value error">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Pools</h3>
+                        <p id="active-pools" class="stat-value">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity Section -->
+            <section class="activity-section">
+                <h2>Recent Activity</h2>
+                <div id="activity-log" class="activity-log">
+                    <p class="placeholder">Waiting for bot connection...</p>
+                </div>
+            </section>
+
+            <!-- Pool Monitoring Section -->
+            <section class="pools-section">
+                <h2>Monitored Pools</h2>
+                <div id="pools-list" class="pools-list">
+                    <p class="placeholder">No pools detected yet</p>
+                </div>
+            </section>
+
+            <!-- Configuration Section -->
+            <section class="config-section">
+                <h2>Current Configuration</h2>
+                <div class="config-grid">
+                    <div class="config-item">
+                        <span class="config-label">SOL Amount:</span>
+                        <span id="config-sol-amount" class="config-value">-</span>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Slippage:</span>
+                        <span id="config-slippage" class="config-value">-</span>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Check Interval:</span>
+                        <span id="config-interval" class="config-value">-</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>SAI-HF Bot v0.1.0 | <span id="current-time">--:--:--</span></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
