@@ -7,6 +7,9 @@ use crate::config::Config;
 use crate::event_loop::LiquidityPool;
 use crate::utils;
 
+// Simulated trade success rate for development/testing
+const SIMULATED_SUCCESS_RATE: f64 = 0.9;
+
 /// Sniper module for executing trades on new liquidity pools
 pub struct Sniper {
     config: Config,
@@ -106,8 +109,8 @@ impl Sniper {
         // Simulate network delay
         time::sleep(Duration::from_millis(100)).await;
         
-        // Simulate success/failure (90% success rate)
-        if utils::random_bool(0.9) {
+        // Simulate success/failure based on configured rate
+        if utils::random_bool(SIMULATED_SUCCESS_RATE) {
             let signature = utils::generate_random_signature();
             Ok(signature)
         } else {

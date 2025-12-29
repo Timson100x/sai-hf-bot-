@@ -8,6 +8,10 @@ use crate::sniper::Sniper;
 use crate::ai_model::AIModel;
 use crate::utils;
 
+// Pool management constants
+const MAX_POOLS: usize = 100;
+const CLEANUP_COUNT: usize = 50;
+
 /// Represents a liquidity pool on Solana
 #[derive(Debug, Clone)]
 pub struct LiquidityPool {
@@ -107,9 +111,9 @@ impl EventLoop {
             }
         }
         
-        // Clean up old pools (keep only last 100)
-        if self.active_pools.len() > 100 {
-            self.active_pools.drain(0..50);
+        // Clean up old pools (keep only last MAX_POOLS)
+        if self.active_pools.len() > MAX_POOLS {
+            self.active_pools.drain(0..CLEANUP_COUNT);
         }
         
         Ok(())

@@ -1,27 +1,28 @@
 use rand::Rng;
 
+// Base58 character set (excludes 0, O, I, l to avoid ambiguity)
+const BASE58_CHARSET: &[u8] = b"123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+
 /// Generate a random Solana address (base58-like string)
 pub fn generate_random_address() -> String {
-    const CHARSET: &[u8] = b"123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
     let mut rng = rand::thread_rng();
     
     (0..44)
         .map(|_| {
-            let idx = rng.gen_range(0..CHARSET.len());
-            CHARSET[idx] as char
+            let idx = rng.gen_range(0..BASE58_CHARSET.len());
+            BASE58_CHARSET[idx] as char
         })
         .collect()
 }
 
 /// Generate a random transaction signature
 pub fn generate_random_signature() -> String {
-    const CHARSET: &[u8] = b"123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
     let mut rng = rand::thread_rng();
     
     (0..88)
         .map(|_| {
-            let idx = rng.gen_range(0..CHARSET.len());
-            CHARSET[idx] as char
+            let idx = rng.gen_range(0..BASE58_CHARSET.len());
+            BASE58_CHARSET[idx] as char
         })
         .collect()
 }
@@ -58,8 +59,16 @@ pub fn calculate_percentage_change(old: f64, new: f64) -> f64 {
 }
 
 /// Validate Solana address format (basic check)
+/// Solana addresses are 44 characters of base58 (excludes 0, O, I, l)
 pub fn is_valid_address(address: &str) -> bool {
-    address.len() == 44 && address.chars().all(|c| c.is_alphanumeric())
+    if address.len() != 44 {
+        return false;
+    }
+    
+    // Check all characters are valid base58
+    address.chars().all(|c| {
+        matches!(c, '1'..='9' | 'A'..='H' | 'J'..='N' | 'P'..='Z' | 'a'..='k' | 'm'..='z')
+    })
 }
 
 #[cfg(test)]
@@ -121,5 +130,18 @@ mod tests {
         
         assert!(!is_valid_address("too_short"));
         assert!(!is_valid_address("this_is_way_too_long_to_be_a_valid_solana_address"));
+        
+        // Test invalid base58 characters (0, O, I, l)
+        let invalid_with_zero = format!("0{}", "1".repeat(43));
+        assert!(!is_valid_address(&invalid_with_zero));
+        
+        let invalid_with_O = format!("O{}", "1".repeat(43));
+        assert!(!is_valid_address(&invalid_with_O));
+        
+        let invalid_with_I = format!("I{}", "1".repeat(43));
+        assert!(!is_valid_address(&invalid_with_I));
+        
+        let invalid_with_l = format!("l{}", "1".repeat(43));
+        assert!(!is_valid_address(&invalid_with_l));
     }
 }

@@ -29,7 +29,11 @@ class DashboardClient {
 
     // Connect to WebSocket server
     connect() {
-        const wsUrl = 'ws://localhost:8080/ws';
+        // Construct WebSocket URL based on current location or default to localhost
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const host = window.location.hostname || 'localhost';
+        const port = window.location.port || '8080';
+        const wsUrl = `${protocol}//${host}:${port}/ws`;
         
         try {
             this.ws = new WebSocket(wsUrl);
